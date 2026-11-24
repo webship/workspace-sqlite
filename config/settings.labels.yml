@@ -1,0 +1,9 @@
+# Labels for core/config/plugin.sqlite.settings.yml, merged into the Settings page.
+keep:
+  label: Copies kept per project
+  info: 'How many copies of one project''s SQLite files the backups folder keeps. When a new one is made the oldest go, the copies made before an import among them. 0 keeps every one.'
+  number:
+    min: 0
+    max: 1000
+    step: 1
+    unit: copies, 0 keeps every one

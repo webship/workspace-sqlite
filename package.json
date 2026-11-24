@@ -1,0 +1,104 @@
+{
+  "name": "@webship.co/workspace-sqlite",
+  "version": "1.0.0",
+  "description": "SQLite, the light database, for Webship Workspace: the DATABASE menu on every project that keeps its data in SQLite files (their tables and sizes, a copy into the backups folder, a copy put back, and the sqlite3 console), and its tool, cmd-tools-sqlite.sh, which opens a file in the project's own web container with PHP's SQLite3, on DDEV, Docker Compose, Podman, Kubernetes, Lando and Docksal. It carries its AI items, each placed in the workspace folder of its kind: an agent, a skill, a command and a prompt. An engine of @webship.co/workspace-database.",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "license": "ISC",
+  "engines": {
+    "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webship/workspace-sqlite.git"
+  },
+  "files": [
+    "dist/src",
+    "ai",
+    "commands",
+    "config",
+    "docs",
+    "features",
+    "scripts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "workspacePlugin": {
+    "name": "sqlite",
+    "label": "SQLite",
+    "family": "databases",
+    "summary": "The DATABASE menu of a project's SQLite files: their tables and sizes, copies out and back, the sqlite3 console",
+    "settingsFile": "plugin.sqlite.settings.yml",
+    "settingsTemplate": "config/plugin.sqlite.settings.yml",
+    "labels": "config/settings.labels.yml",
+    "needs": {
+      "plugins": [
+        [
+          "dev",
+          "test",
+          "demos",
+          "sandboxes",
+          "projects"
+        ],
+        "ai-agents",
+        "ai-skills",
+        "ai-commands",
+        "ai-prompts"
+      ]
+    },
+    "typeActions": {
+      "database": [
+        "sites"
+      ]
+    },
+    "commands": {
+      "types": [
+        "sites"
+      ],
+      "files": [
+        "commands/cmd-tools-sqlite.sh"
+      ]
+    },
+    "scripts": {
+      "functions": [
+        "scripts/functions/fun-sqlite.sh"
+      ],
+      "args": [
+        "scripts/args/arg-sqlite.sh"
+      ]
+    },
+    "ai": {
+      "agents": [
+        "ai/agents/sqlite-helper.md"
+      ],
+      "skills": [
+        "ai/skills/sqlite-database"
+      ],
+      "commands": [
+        "ai/commands/sqlite-sizes.md"
+      ],
+      "prompts": [
+        "ai/prompts/sqlite-copy-and-check.md"
+      ]
+    },
+    "features": [
+      "features/sqlite.feature"
+    ]
+  },
+  "dependencies": {
+    "@webship.co/workspace-database": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@webship.co/workspace-plugin-api": "^1.0.12",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

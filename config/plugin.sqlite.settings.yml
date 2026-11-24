@@ -1,0 +1,7 @@
+# SQLite — core/config/plugin.sqlite.settings.yml
+#
+# The DATABASE menu of a project's SQLite files, and its tool, cmd-tools-sqlite.sh.
+
+# How many copies of one project's SQLite files the backups folder keeps: when a new one is made, the oldest go (the
+# copies made before an import among them). 0 keeps every one.
+keep: 0
